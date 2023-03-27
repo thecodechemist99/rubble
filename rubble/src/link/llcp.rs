@@ -55,8 +55,8 @@ impl ConnectionParamRequest {
         assert!(min <= max);
 
         // Convert and round to units of 1.25 ms.
-        let max = max.as_micros() / 1_250;
-        let min = min.as_micros() / 1_250;
+        let max = max.to_micros() / 1_250;
+        let min = min.to_micros() / 1_250;
 
         // Clamp to valid range of 6..=3200
         let min = cmp::min(cmp::max(min, 6), 3200);
@@ -68,12 +68,12 @@ impl ConnectionParamRequest {
 
     /// Returns the minimum requested connection interval.
     pub fn min_conn_interval(&self) -> Duration {
-        Duration::from_micros(u32::from(self.interval_min) * 1_250)
+        Duration::micros(u32::from(self.interval_min) * 1_250)
     }
 
     /// Returns the maximum requested connection interval.
     pub fn max_conn_interval(&self) -> Duration {
-        Duration::from_micros(u32::from(self.interval_max) * 1_250)
+        Duration::micros(u32::from(self.interval_max) * 1_250)
     }
 
     /// Returns the slave latency in number of connection events.
@@ -83,7 +83,7 @@ impl ConnectionParamRequest {
 
     /// Returns the supervision timeout.
     pub fn supervision_timeout(&self) -> Duration {
-        Duration::from_millis(self.supervision_timeout * 10)
+        Duration::millis(self.supervision_timeout as u32 * 10)
     }
 }
 
@@ -139,17 +139,17 @@ pub struct ConnectionUpdateData {
 impl ConnectionUpdateData {
     /// Returns the size of the transmit window for the first PDU of the connection.
     pub fn win_size(&self) -> Duration {
-        Duration::from_micros(u32::from(self.win_size) * 1_250)
+        Duration::micros(u32::from(self.win_size) * 1_250)
     }
 
     /// Returns the offset of the transmit window, as a duration since the `instant`.
     pub fn win_offset(&self) -> Duration {
-        Duration::from_micros(u32::from(self.win_offset) * 1_250)
+        Duration::micros(u32::from(self.win_offset) * 1_250)
     }
 
     /// Returns the duration between connection events.
     pub fn interval(&self) -> Duration {
-        Duration::from_micros(u32::from(self.interval) * 1_250)
+        Duration::micros(u32::from(self.interval) * 1_250)
     }
 
     /// Returns the slave latency.
@@ -159,7 +159,7 @@ impl ConnectionUpdateData {
 
     /// Returns the connection supervision timeout (`connSupervisionTimeout`).
     pub fn timeout(&self) -> Duration {
-        Duration::from_micros(u32::from(self.timeout) * 10_000)
+        Duration::micros(u32::from(self.timeout) * 10_000)
     }
 
     /// Returns the instant at which these changes should take effect.

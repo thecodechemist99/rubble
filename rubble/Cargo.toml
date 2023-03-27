@@ -12,6 +12,7 @@ edition = "2021"
 
 [dependencies]
 bitflags = "2.0.2"
+fugit = "0.3"
 heapless = "0.7.1"
 p256 = { version = "0.13.0", features = ["arithmetic"] ,default_features = false }
 rand_core = "0.6.3"
