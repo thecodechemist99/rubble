@@ -3,6 +3,7 @@ use ::p256::{
     elliptic_curve::{
         sec1::{FromEncodedPoint, ToEncodedPoint},
         Field,
+        Group,
     },
     ProjectivePoint, Scalar,
 };
@@ -71,7 +72,7 @@ impl SecretKey for P256SecretKey {
 
         // ECDH is nothing but multiplying the foreign public key by the local secret key.
         let affine = ::p256::AffinePoint::from_encoded_point(&foreign_key);
-        if affine.is_none() {
+        if affine.is_none().into() {
             return Err(InvalidPublicKey::new());
         }
 

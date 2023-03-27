@@ -8,18 +8,18 @@ readme = "../README.md"
 license = "0BSD"
 name = "rubble"
 version = "0.0.4"
-edition = "2018"
+edition = "2021"
 
 [dependencies]
-bitflags = "1.2.1"
+bitflags = "2.0.2"
 heapless = "0.7.1"
 rand_core = "0.6.3"
-sha2 = { version = "0.9.0", default-features = false }
-zerocopy = "0.5.0"
-defmt = "0.2.3"
+sha2 = { version = "0.10.6", default-features = false }
+zerocopy = "0.6.1"
+defmt = "0.3.2"
 
 [dependencies.p256]
-version = "0.9.0"
+version = "0.13.0"
 default-features = false
 features = ["arithmetic"]
 
@@ -39,6 +39,6 @@ optional = true
 ring = "0.16.9"
 
 [dev-dependencies.p256]
-version = "0.9.0"
+version = "0.13.0"
 default-features = false
 features = ["arithmetic"]
