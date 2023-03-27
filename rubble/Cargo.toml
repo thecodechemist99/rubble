@@ -13,32 +13,19 @@ edition = "2021"
 [dependencies]
 bitflags = "2.0.2"
 heapless = "0.7.1"
+p256 = { version = "0.13.0", features = ["arithmetic"] ,default_features = false }
 rand_core = "0.6.3"
 sha2 = { version = "0.10.6", default-features = false }
 zerocopy = "0.6.1"
 defmt = "0.3.2"
 
-[dependencies.p256]
-version = "0.13.0"
-default-features = false
-features = ["arithmetic"]
-
 # The `ring` feature can be enabled to provide P-256 operations for non-embedded use cases.
-[dependencies.ring]
-version = "0.16.9"
-default-features = false
-optional = true
+ring = { version = "0.16.9", default_features = false, optional = true }
 
 # If the `log` feature is enabled, the `log` crate's macros will be called at various points to dump
 # packets, state, and events. By default, it is disabled.
-[dependencies.log]
-version = "0.4.8"
-optional = true
+log = { version = "0.4.8", optional = true }
 
 [dev-dependencies]
+p256 = { version = "0.13.0", features = ["arithmetic"], default_features = false }
 ring = "0.16.9"
-
-[dev-dependencies.p256]
-version = "0.13.0"
-default-features = false
-features = ["arithmetic"]
